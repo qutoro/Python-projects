@@ -53,10 +53,10 @@ def chat(message):
         if chat_id not in user_history:
             user_history[chat_id] = []
 
-        # добавляем сообщение пользователя
+
         user_history[chat_id].append(f"User: {message.text}")
 
-        # берем последние 6 сообщений
+
         context = "\n".join(user_history[chat_id][-6:])
 
         response = client.models.generate_content(
@@ -66,7 +66,6 @@ def chat(message):
 
         answer = response.text
 
-        # сохраняем ответ
         user_history[chat_id].append(f"Bot: {answer}")
 
         bot.send_message(chat_id, answer)
